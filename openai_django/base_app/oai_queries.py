@@ -10,10 +10,11 @@ else:
     raise Exception('OpenAI API Key not found')
 
 
-def get_completion(prompt):
+def get_completion(prompt, user):
     query = openai.ChatCompletion.create(
+        user=user,
         model='gpt-3.5-turbo',
-        messages=[{"role": "user", "content": prompt }]
+        messages=[{"role": "user", "content": prompt}]
     )
     response = query.get('choices')[0]['message']['content']
     return response
